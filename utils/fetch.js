@@ -8,23 +8,51 @@ export default async function fetchAll() {
     const sliceApi = people.slice(0, 10);
     console.log(sliceApi);
 
-    const singleCard = document.querySelector('[data-js="Card"]');
-    console.log(singleCard);
+    // const singleCard = document.querySelector('[data-js="Card"]');
+    // console.log(singleCard);
 
-    //bild greifen und zwischen speichern in einer Konstanten
-    const imageOfCharacter = sliceApi[0].image;
-    console.log(imageOfCharacter);
+    sliceApi.forEach(person => {
+      const imageOfCharacter = person.image; //bild greifen und zwischen speichern in einer Konstanten
+      const nameOfCharacter = person.name; //namen greifen und in einer Konstanten
+      const cardElement = document.createElement('section');
+      cardElement.className = 'card';
+      cardElement.innerHTML = `
+      <figure>
+        <img
+          data-js="image-character"
+          class="Card__img"
+          src="${imageOfCharacter}"
+          alt=""
+          height="100"
+          width="100"
+        />
+      </figure>
+      <p data-js="name-character" class="Card__name">${nameOfCharacter}</p>
+        `;
+      document.body.append(cardElement);
+      //  let hogwardsCards = [];
 
-    //namen greifen und in einer Konstanten
-    const nameOfCharacter = sliceApi[0].name;
-    console.log(nameOfCharacter);
+      //Bild und Name einfügen
 
-    //Karte erstellen
+      //Karte interaktiv machen
 
-    //Bild und Name einfügen
+      //die Karte in unseren Browser anzeigen
+    });
+    //console.log(imageOfCharacter);
 
-    //Karte interaktiv machen
+    // //bild greifen und zwischen speichern in einer Konstanten
+    // const imageOfCharacter = sliceApi[0].image;
+    // console.log(imageOfCharacter);
 
-    //die Karte in unseren Browser anzeigen
+    // //namen greifen und in einer Konstanten
+    // const nameOfCharacter = sliceApi[0].name;
+    // console.log(nameOfCharacter);
+
+    // //Kartenobjekt erstellen
+
+    // const newCard = {
+    //   image: imageOfCharacter,
+    //   name: nameOfCharacter,
+    // };
   }
 }
