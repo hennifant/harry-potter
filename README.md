@@ -1,1 +1,1 @@
-# Quiz App
+# Harry Potter App
