@@ -1,5 +1,5 @@
 import Button from './components/Button.js';
-import fetchAll from './utils/fetch.js';
+import fetchAll from './components/Card.js';
 
 const buttons = document.querySelectorAll('[data-js=Button]');
 
