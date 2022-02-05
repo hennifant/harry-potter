@@ -1,15 +1,16 @@
 import fetchCharacters from '../services/fetchCharacters.js';
 
+let sliceApi = [];
+let a = Number(0);
+let b = Number(10);
+
 export default async function fetchAll() {
   const people = await fetchCharacters();
   createPeopleList(people);
 
-  function createPeopleList(people) {
-    const sliceApi = people.slice(0, 10);
+  function createPeopleList() {
+    newPeople(a, b);
     console.log(sliceApi);
-
-    // const singleCard = document.querySelector('[data-js="Card"]');
-    // console.log(singleCard);
 
     sliceApi.forEach(person => {
       const imageOfCharacter = person.image; //bild greifen und zwischen speichern in einer Konstanten
@@ -49,36 +50,26 @@ export default async function fetchAll() {
       <li>Actor: ${actorOfCharacter}</li>
       </ul>
         `;
-      document.body.append(cardElement);
+
+      const listOfCards = document.querySelector('[data-js="fetch1"]');
+      listOfCards.append(cardElement);
 
       const allUlItems = cardElement.querySelector('ul');
       cardElement.addEventListener('click', () => {
         allUlItems.toggleAttribute('hidden');
       });
     });
-    //  let hogwardsCards = [];
-
-    //Bild und Name einfügen
-
-    //Karte interaktiv machen
-
-    //die Karte in unseren Browser anzeigen
-
-    //console.log(imageOfCharacter);
-
-    // //bild greifen und zwischen speichern in einer Konstanten
-    // const imageOfCharacter = sliceApi[0].image;
-    // console.log(imageOfCharacter);
-
-    // //namen greifen und in einer Konstanten
-    // const nameOfCharacter = sliceApi[0].name;
-    // console.log(nameOfCharacter);
-
-    // //Kartenobjekt erstellen
-
-    // const newCard = {
-    //   image: imageOfCharacter,
-    //   name: nameOfCharacter,
-    // };
   }
+
+  function newPeople(start, end) {
+    sliceApi = people.slice(start, end);
+    return sliceApi;
+  }
+
+  const buttonLoadMore = document.querySelector('[data-js="loadmore1"]');
+  buttonLoadMore.addEventListener('click', () => {
+    a = b + 1;
+    b = b + 10;
+    createPeopleList();
+  });
 }
