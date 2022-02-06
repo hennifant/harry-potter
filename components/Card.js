@@ -4,13 +4,12 @@ let sliceApi = [];
 let a = Number(0);
 let b = Number(10);
 
-export default async function fetchAll() {
+export default async function Card() {
   const people = await fetchCharacters();
   createPeopleList(people);
 
   function createPeopleList() {
     newPeople(a, b);
-    console.log(sliceApi);
 
     sliceApi.forEach(person => {
       const imageOfCharacter = person.image; //bild greifen und zwischen speichern in einer Konstanten
@@ -72,4 +71,52 @@ export default async function fetchAll() {
     b = b + 10;
     createPeopleList();
   });
+
+  function filter() {
+    const filterElement = document.createElement('fieldset');
+    filterElement.innerHTML = `
+  <input type="radio" name="filter" id="all" checked />
+  <label for="all">All</label>
+  <input type="radio" name="filter" id="gryffindor" data-js="gryffindor" />
+  <label for="gryffindor">Gryffindor</label>
+  <input type="radio" name="filter" id="Hufflepuff" />
+  <label for="Hufflepuff">Hufflepuff</label>
+  <input type="radio" name="filter" id="Ravenclaw" />
+  <label for="Ravenclaw">Ravenclaw</label>
+  <input type="radio" name="filter" id="Slytherin" />
+  <label for="Slytherin">Slytherin</label>
+    `;
+    const showFilter = document.querySelector('[data-js="filter"]');
+    const buttonGryffindor = filterElement.querySelector(
+      '[data-js="gryffindor"]'
+    );
+    const houseGryffindor = sliceApi.filter(card =>
+      card.house.includes('Gryffindor')
+    );
+    const isNotHouseGryffindor = sliceApi.filter(card =>
+      card.house.includes(!houseGryffindor)
+    );
+
+    console.log(isNotHouseGryffindor);
+    showFilter.append(filterElement);
+
+    buttonGryffindor.addEventListener('change', () => {
+      // Wenn es haus gryffendor ist, dann zeige alle Karten mit haus griffendor und blende alle anderen Karten aus
+      if (houseGryffindor) {
+        console.log(houseGryffindor);
+        console.log(!houseGryffindor);
+      }
+      //console.log(houseGryffindor);
+    });
+
+    // houseGriffendor.filter(house => {
+    //   return house === 'Gryffindor'
+    // })
+    //console.log(houseGryffindor);
+
+    return showFilter;
+  }
+  filter();
 }
+
+//

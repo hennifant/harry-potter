@@ -3,5 +3,6 @@
 
 @import '../components/Button.css';
 @import '../components/Card.css';
+@import '../components/Filter.css';
 
 @import './utility.css';
