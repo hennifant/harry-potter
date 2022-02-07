@@ -1,7 +1,11 @@
 const apiUrl = 'https://hp-api.herokuapp.com/api/characters';
 
-export default function fetchCharacters() {
-  return fetch(apiUrl)
-    .then(response => response.json())
-    .catch(error => console.log(error));
+export default async function fetchCharacters() {
+  try {
+    const response = await fetch(apiUrl);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    return [];
+  }
 }
