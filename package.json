@@ -2,6 +2,7 @@
   "name": "linter-template-hh-web-22-1",
   "private": true,
   "scripts": {
+    "dev": "npx live-server",
     "test": "npm run eslint && npm run htmlhint && npm run prettier:check",
     "prettier:check": "npx prettier --check .",
     "prettier:write": "npx prettier --write .",
@@ -26,5 +27,9 @@
     "husky": "^7.0.0",
     "lint-staged": "^12.3.2",
     "prettier": "2.5.1"
+  },
+  "dependencies": {
+    "@types/live-server": "^1.2.1",
+    "live-server": "^1.2.1"
   }
 }
